@@ -1,6 +1,8 @@
 DROP TABLE IF EXISTS councilors;
 DROP TABLE IF EXISTS questions;
 DROP TABLE IF EXISTS category;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS favorite;
 
 
 CREATE TABLE IF NOT EXISTS councilors (
@@ -39,3 +41,26 @@ CREATE TABLE IF NOT EXISTS category (
 );            
 
 LOAD DATA INFILE "/docker-entrypoint-initdb.d/004-category.csv" INTO TABLE category FIELDS TERMINATED BY ',';
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    uuid VARCHAR(100),
+	nickname VARCHAR(50) NOT NULL UNIQUE,
+	password VARCHAR(100) NOT NULL,
+	birthday DATE,
+	created_at DATETIME,
+	gender VARCHAR(10),
+	home VARCHAR(10)
+);            
+
+LOAD DATA INFILE "/docker-entrypoint-initdb.d/005-users.csv" INTO TABLE users FIELDS TERMINATED BY ',';
+
+CREATE TABLE IF NOT EXISTS favorite (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+	user_id INTEGER UNIQUE,
+	councilor_id INTEGER NOt NULL DEFAULT "0",
+	category_id INTEGER NOt NULL DEFAULT "0",
+	created_at DATETIME
+);            
+
+LOAD DATA INFILE "/docker-entrypoint-initdb.d/006-favorite.csv" INTO TABLE favorite FIELDS TERMINATED BY ',';
