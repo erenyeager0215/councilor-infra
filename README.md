@@ -15,7 +15,7 @@ Docker version 20.10.12, build e91ed5707e
 ## 手順
 
 レポジトリを任意のディレクトリ配下にてcloneします。 
-httpsの場合: `git clone https://github.com/raisetech-for-student/docker-mysql-hands-on.git`  
+httpsの場合: `git clone https://github.com/raisetech-for-student/docker-mysql-hands-on.git`
 
 cloneで指定する値は下記のように取得できます。  
 
